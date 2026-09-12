@@ -157,9 +157,9 @@ const RS_CONFIG = Object.freeze({
 
 const SUPABASE_CONFIG = Object.freeze({
 
-    URL: 'YOUR_SUPABASE_PROJECT_URL',
+    URL: 'https://dazguesfusfmvgfwuqnk.supabase.co',
 
-    ANON_KEY: 'YOUR_SUPABASE_ANON_KEY'
+    ANON_KEY: 'sb_publishable_oZnvdj_k5vp8_gK_XLh3Lg_a3mgpJ4T'
 
 });
 
