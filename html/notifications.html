@@ -1,0 +1,808 @@
+```html
+<section
+    id="notifications-page"
+    class="page-section notifications-page"
+    data-page-content="notifications"
+>
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+    <div class="page-heading">
+
+        <div class="page-heading-copy">
+
+            <span class="eyebrow">
+                Alerts & updates
+            </span>
+
+            <h1>
+                Notifications
+            </h1>
+
+            <p>
+                Keep track of important booking, contract, and gallery activity.
+            </p>
+
+        </div>
+
+        <div class="page-heading-actions">
+
+            <button
+                type="button"
+                class="button button-secondary"
+                data-action="refresh-notifications"
+            >
+                <span aria-hidden="true">
+                    ↻
+                </span>
+
+                Refresh
+            </button>
+
+            <button
+                type="button"
+                class="button button-secondary"
+                data-action="mark-all-notifications-read"
+            >
+                Mark all read
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+         NOTIFICATION STATISTICS
+    ====================================================== -->
+    <section
+        class="stats-grid notifications-stats"
+        aria-label="Notification statistics"
+    >
+
+        <article class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-card-label">
+                    Total
+                </span>
+
+                <span class="stat-card-icon">
+                    ♢
+                </span>
+
+            </div>
+
+            <strong
+                id="notifications-total-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Recent notifications
+            </p>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-card-label">
+                    Unread
+                </span>
+
+                <span class="stat-card-icon">
+                    ●
+                </span>
+
+            </div>
+
+            <strong
+                id="notifications-unread-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Need your attention
+            </p>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-card-label">
+                    Bookings
+                </span>
+
+                <span class="stat-card-icon">
+                    ▤
+                </span>
+
+            </div>
+
+            <strong
+                id="notifications-booking-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Booking updates
+            </p>
+
+        </article>
+
+        <article class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-card-label">
+                    Reminders
+                </span>
+
+                <span class="stat-card-icon">
+                    ◷
+                </span>
+
+            </div>
+
+            <strong
+                id="notifications-reminder-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Upcoming reminders
+            </p>
+
+        </article>
+
+    </section>
+
+    <!-- =====================================================
+         NOTIFICATION WORKSPACE
+    ====================================================== -->
+    <section
+        class="notifications-workspace"
+        aria-label="Notification center"
+    >
+
+        <!-- =================================================
+             NOTIFICATION LIST
+        ================================================== -->
+        <div class="dashboard-card notifications-list-card">
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Activity center
+                    </span>
+
+                    <h2>
+                        Recent notifications
+                    </h2>
+
+                </div>
+
+                <div class="table-header-actions">
+
+                    <button
+                        type="button"
+                        class="button button-ghost"
+                        data-action="clear-read-notifications"
+                    >
+                        Clear read
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- =============================================
+                 FILTER TOOLBAR
+            ============================================== -->
+            <div
+                class="notification-filter-toolbar"
+                role="search"
+                aria-label="Filter notifications"
+            >
+
+                <div class="notification-search">
+
+                    <label
+                        for="notification-search-input"
+                        class="sr-only"
+                    >
+                        Search notifications
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            ⌕
+                        </span>
+
+                        <input
+                            id="notification-search-input"
+                            class="form-input has-leading-icon"
+                            type="search"
+                            placeholder="Search notifications..."
+                            autocomplete="off"
+                            data-notification-filter="search"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="notification-filter">
+
+                    <label
+                        for="notification-status-filter"
+                        class="sr-only"
+                    >
+                        Notification status
+                    </label>
+
+                    <select
+                        id="notification-status-filter"
+                        class="form-select"
+                        data-notification-filter="status"
+                    >
+                        <option value="all">
+                            All
+                        </option>
+
+                        <option value="unread">
+                            Unread
+                        </option>
+
+                        <option value="read">
+                            Read
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="notification-filter">
+
+                    <label
+                        for="notification-type-filter"
+                        class="sr-only"
+                    >
+                        Notification type
+                    </label>
+
+                    <select
+                        id="notification-type-filter"
+                        class="form-select"
+                        data-notification-filter="type"
+                    >
+                        <option value="all">
+                            All types
+                        </option>
+
+                        <option value="booking">
+                            Bookings
+                        </option>
+
+                        <option value="contract">
+                            Contracts
+                        </option>
+
+                        <option value="calendar">
+                            Calendar
+                        </option>
+
+                        <option value="gallery">
+                            Gallery
+                        </option>
+
+                        <option value="system">
+                            System
+                        </option>
+
+                        <option value="reminder">
+                            Reminders
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- =============================================
+                 NOTIFICATION LIST
+            ============================================== -->
+            <div
+                id="notifications-list"
+                class="notifications-list"
+                aria-live="polite"
+            >
+                <!-- Notification items inserted by notifications.js -->
+            </div>
+
+            <!-- =============================================
+                 LOADING STATE
+            ============================================== -->
+            <div
+                id="notifications-loading"
+                class="table-state"
+                hidden
+            >
+
+                <div class="loader-circle"></div>
+
+                <p>
+                    Loading notifications...
+                </p>
+
+            </div>
+
+            <!-- =============================================
+                 EMPTY STATE
+            ============================================== -->
+            <div
+                id="notifications-empty-state"
+                class="empty-state"
+                hidden
+            >
+
+                <span class="empty-state-icon">
+                    ♢
+                </span>
+
+                <h3>
+                    No notifications
+                </h3>
+
+                <p>
+                    New activity and reminders will appear here.
+                </p>
+
+            </div>
+
+            <!-- =============================================
+                 PAGINATION
+            ============================================== -->
+            <div
+                id="notifications-pagination"
+                class="pagination"
+                hidden
+            >
+
+                <div class="pagination-summary">
+
+                    Showing
+                    <strong id="notifications-pagination-start">
+                        0
+                    </strong>
+
+                    to
+
+                    <strong id="notifications-pagination-end">
+                        0
+                    </strong>
+
+                    of
+
+                    <strong id="notifications-pagination-total">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="pagination-controls">
+
+                    <button
+                        type="button"
+                        class="pagination-button"
+                        data-action="notifications-previous-page"
+                        aria-label="Previous page"
+                    >
+                        ‹
+                    </button>
+
+                    <div
+                        id="notifications-page-numbers"
+                        class="pagination-numbers"
+                    ></div>
+
+                    <button
+                        type="button"
+                        class="pagination-button"
+                        data-action="notifications-next-page"
+                        aria-label="Next page"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             NOTIFICATION SETTINGS
+        ================================================== -->
+        <aside class="dashboard-card notification-preferences-card">
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Preferences
+                    </span>
+
+                    <h2>
+                        Notification settings
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="settings-list">
+
+                <!-- =========================================
+                     BOOKING NOTIFICATIONS
+                ========================================== -->
+                <div class="setting-item">
+
+                    <div class="setting-copy">
+
+                        <strong>
+                            Booking requests
+                        </strong>
+
+                        <span>
+                            Notify me when a new booking request arrives.
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            id="notify-bookings"
+                            type="checkbox"
+                            checked
+                            data-notification-setting="bookings"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+                <!-- =========================================
+                     CONTRACT NOTIFICATIONS
+                ========================================== -->
+                <div class="setting-item">
+
+                    <div class="setting-copy">
+
+                        <strong>
+                            Contract updates
+                        </strong>
+
+                        <span>
+                            Notify me when contracts are created or updated.
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            id="notify-contracts"
+                            type="checkbox"
+                            checked
+                            data-notification-setting="contracts"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+                <!-- =========================================
+                     CALENDAR REMINDERS
+                ========================================== -->
+                <div class="setting-item">
+
+                    <div class="setting-copy">
+
+                        <strong>
+                            Calendar reminders
+                        </strong>
+
+                        <span>
+                            Receive reminders about upcoming photography events.
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            id="notify-calendar"
+                            type="checkbox"
+                            checked
+                            data-notification-setting="calendar"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+                <!-- =========================================
+                     GALLERY NOTIFICATIONS
+                ========================================== -->
+                <div class="setting-item">
+
+                    <div class="setting-copy">
+
+                        <strong>
+                            Gallery activity
+                        </strong>
+
+                        <span>
+                            Notify me about gallery and media activity.
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            id="notify-gallery"
+                            type="checkbox"
+                            checked
+                            data-notification-setting="gallery"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+                <!-- =========================================
+                     SYSTEM NOTIFICATIONS
+                ========================================== -->
+                <div class="setting-item">
+
+                    <div class="setting-copy">
+
+                        <strong>
+                            System updates
+                        </strong>
+
+                        <span>
+                            Show important dashboard and system notifications.
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            id="notify-system"
+                            type="checkbox"
+                            checked
+                            data-notification-setting="system"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="settings-card-footer">
+
+                <button
+                    type="button"
+                    class="button button-primary"
+                    data-action="save-notification-settings"
+                >
+                    Save preferences
+                </button>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+    <!-- =====================================================
+         NOTIFICATION DETAIL MODAL
+    ====================================================== -->
+    <div
+        id="notification-detail-modal"
+        class="modal-root"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-backdrop"
+            data-action="close-notification-detail"
+        ></div>
+
+        <section
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="notification-detail-title"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Notification
+                    </span>
+
+                    <h2 id="notification-detail-title">
+                        Notification details
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-action="close-notification-detail"
+                    aria-label="Close notification details"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                id="notification-detail-content"
+                class="notification-detail-content"
+            >
+                <!-- Selected notification -->
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    data-action="close-notification-detail"
+                >
+                    Close
+                </button>
+
+                <button
+                    type="button"
+                    class="button button-primary"
+                    data-action="open-notification-source"
+                >
+                    Open related item
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- =====================================================
+         CLEAR NOTIFICATIONS MODAL
+    ====================================================== -->
+    <div
+        id="clear-notifications-modal"
+        class="modal-root"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-backdrop"
+            data-action="close-clear-notifications"
+        ></div>
+
+        <section
+            class="modal-card modal-card-small"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="clear-notifications-title"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Notification center
+                    </span>
+
+                    <h2 id="clear-notifications-title">
+                        Clear read notifications?
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-action="close-clear-notifications"
+                    aria-label="Close clear notifications dialog"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <p class="modal-description">
+                Only notifications that are already marked as read will be removed.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    data-action="close-clear-notifications"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="button button-danger"
+                    data-action="confirm-clear-read-notifications"
+                >
+                    Clear read
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- =====================================================
+         PAGE STATUS
+    ====================================================== -->
+    <div
+        id="notifications-status"
+        class="page-status"
+        role="status"
+        aria-live="polite"
+        hidden
+    ></div>
+
+</section>
+```

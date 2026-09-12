@@ -1,0 +1,307 @@
+
+/* =========================================================
+   RS PHOTOGRAPHY OWNER DASHBOARD
+   CSS PART 01 — RESET
+   File: 01-reset.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. BOX SIZING
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   2. HTML / BODY BASE RESET
+   ========================================================= */
+
+html {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    scroll-behavior: smooth;
+
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   3. DOCUMENT ELEMENTS
+   ========================================================= */
+
+main,
+header,
+footer,
+section,
+article,
+aside,
+nav,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   4. HEADINGS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/* =========================================================
+   5. PARAGRAPHS
+   ========================================================= */
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   6. LISTS
+   ========================================================= */
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =========================================================
+   7. LINKS
+   ========================================================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   8. BUTTONS
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+    margin: 0;
+    padding: 0;
+
+    font: inherit;
+}
+
+
+button {
+    border: 0;
+    background: none;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   9. FORM ELEMENTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    border-radius: 0;
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+button,
+input,
+textarea,
+select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+
+/* =========================================================
+   10. IMAGES
+   ========================================================= */
+
+img,
+picture,
+svg,
+video,
+canvas {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+img {
+    height: auto;
+}
+
+
+/* =========================================================
+   11. VIDEO
+   ========================================================= */
+
+video {
+    width: 100%;
+}
+
+
+/* =========================================================
+   12. TABLES
+   ========================================================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* =========================================================
+   13. FIELDSETS
+   ========================================================= */
+
+fieldset {
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   14. LABELS
+   ========================================================= */
+
+label {
+    display: inline-block;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   15. HIDDEN ATTRIBUTE
+   ========================================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   16. FOCUS
+   ========================================================= */
+
+:focus {
+    outline: none;
+}
+
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   17. SELECTION
+   ========================================================= */
+
+::selection {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   18. PLACEHOLDER
+   ========================================================= */
+
+::placeholder {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   19. DISABLED ELEMENTS
+   ========================================================= */
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   20. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
+
