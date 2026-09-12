@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- ✅ CRITICAL FOR GITHUB PAGES: makes every relative path resolve
-         against https://yash280410.github.io/RS-OWNER/ -->
+    <!-- ✅ GitHub Pages safe base for /RS-OWNER/ sub-path -->
     <base href="./">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +13,14 @@
 
     <title>RS Photography | Owner Dashboard</title>
 
-    <!-- ================= GOOGLE FONTS ================= -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- ================= MAIN CSS FILES ================= -->
+    <!-- Main CSS (unchanged paths, now with ./ prefix) -->
     <link rel="stylesheet" href="./css/01-reset.css">
     <link rel="stylesheet" href="./css/02-variables.css">
     <link rel="stylesheet" href="./css/03-base.css">
@@ -37,29 +36,97 @@
 </head>
 
 <body>
+
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
+    <!-- =====================================================
+         APPLICATION ROOT
+    ====================================================== -->
     <div id="app" class="app-shell" data-app="rs-photography-owner">
 
-        <!-- ================= GLOBAL LOADER ================= -->
+        <!-- =================================================
+             GLOBAL LOADER
+        ================================================== -->
         <div id="global-loader" class="global-loader" aria-live="polite" aria-busy="true">
             <div class="loader-circle"></div>
             <p class="loader-text">Preparing your studio...</p>
-            <p id="loader-error" class="loader-error" hidden></p>
+            <p id="global-loader-error" class="loader-error" hidden></p>
         </div>
 
-        <!-- ================= AUTH ROOT ================= -->
-        <section id="login-root" class="login-root" hidden aria-label="Owner login"></section>
+        <!-- =================================================
+             LOGIN PAGE
+        ================================================== -->
+        <section id="login-page" class="login-root" hidden aria-label="Owner login">
 
-        <!-- ================= OWNER DASHBOARD ================= -->
-        <section id="owner-root" class="owner-root" hidden>
+            <div class="login-card">
 
-            <!-- Mobile header -->
+                <div class="login-brand">
+                    <span class="brand-mark">RS</span>
+                    <h1>RS Photography</h1>
+                    <p class="login-subtitle">Owner Studio Sign In</p>
+                </div>
+
+                <form id="login-form" class="login-form" novalidate>
+
+                    <div class="form-field">
+                        <label for="login-email">Email</label>
+                        <input
+                            id="login-email"
+                            name="email"
+                            type="email"
+                            placeholder="owner@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="login-password">Password</label>
+                        <input
+                            id="login-password"
+                            name="password"
+                            type="password"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                            required>
+                    </div>
+
+                    <p id="login-error" class="form-error" hidden role="alert"></p>
+
+                    <button
+                        id="login-submit"
+                        type="submit"
+                        class="btn btn-primary login-submit">
+                        <span class="btn-label">Sign in</span>
+                        <span class="btn-spinner" hidden></span>
+                    </button>
+                </form>
+
+                <p class="login-footer">
+                    Authorized access only.
+                </p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             DASHBOARD APP
+        ================================================== -->
+        <section id="dashboard-app" class="owner-root" hidden>
+
+            <!-- =============================================
+                 MOBILE HEADER
+            ============================================== -->
             <header id="mobile-header" class="mobile-header">
-                <button type="button" class="icon-button mobile-menu-button"
-                        data-action="open-sidebar" aria-label="Open navigation menu"
-                        aria-controls="owner-sidebar" aria-expanded="false">
-                    <span></span><span></span><span></span>
+
+                <button
+                    id="sidebar-toggle"
+                    type="button"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open navigation menu"
+                    aria-controls="sidebar"
+                    aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
 
                 <a href="./index.html" class="mobile-brand" aria-label="RS Photography dashboard home">
@@ -67,20 +134,35 @@
                     <span class="brand-name">Photography</span>
                 </a>
 
-                <button type="button" class="icon-button" data-action="toggle-notifications"
-                        aria-label="Open notifications">
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-action="toggle-notifications"
+                    aria-label="Open notifications">
                     <span class="notification-icon">♢</span>
                     <span id="mobile-notification-count" class="notification-count" hidden>0</span>
                 </button>
             </header>
 
-            <div id="sidebar-overlay" class="sidebar-overlay"
-                 data-action="close-sidebar" hidden></div>
+            <!-- =============================================
+                 SIDEBAR OVERLAY
+            ============================================== -->
+            <div
+                id="sidebar-overlay"
+                class="sidebar-overlay"
+                data-action="close-sidebar"
+                hidden></div>
 
-            <!-- Sidebar -->
-            <aside id="owner-sidebar" class="owner-sidebar" aria-label="Main navigation">
+            <!-- =============================================
+                 SIDEBAR
+            ============================================== -->
+            <aside
+                id="sidebar"
+                class="owner-sidebar"
+                aria-label="Main navigation">
+
                 <div class="sidebar-top">
-                    <a href="./index.html" class="sidebar-brand" aria-label="RS Photography dashboard home">
+                    <a href="./index.html" class="sidebar-brand" aria-label="Dashboard home">
                         <span class="brand-logo">RS</span>
                         <span class="brand-copy">
                             <strong>RS Photography</strong>
@@ -88,8 +170,11 @@
                         </span>
                     </a>
 
-                    <button type="button" class="icon-button sidebar-close-button"
-                            data-action="close-sidebar" aria-label="Close navigation menu">×</button>
+                    <button
+                        id="sidebar-close"
+                        type="button"
+                        class="icon-button sidebar-close-button"
+                        aria-label="Close navigation menu">×</button>
                 </div>
 
                 <div class="sidebar-profile">
@@ -101,10 +186,15 @@
                     <span class="online-indicator" title="Online" aria-label="Online"></span>
                 </div>
 
-                <nav class="sidebar-navigation" aria-label="Dashboard pages">
+                <nav
+                    id="sidebar-navigation"
+                    class="sidebar-navigation"
+                    aria-label="Dashboard pages">
+
                     <p class="navigation-label">Workspace</p>
 
-                    <button type="button" class="sidebar-link is-active" data-page="dashboard" aria-current="page">
+                    <button type="button" class="sidebar-link is-active"
+                            data-page="dashboard" aria-current="page">
                         <span class="sidebar-link-icon">▦</span>
                         <span class="sidebar-link-text">Dashboard</span>
                     </button>
@@ -158,43 +248,56 @@
                 </div>
             </aside>
 
-            <!-- Main area -->
+            <!-- =============================================
+                 MAIN AREA
+            ============================================== -->
             <div class="main-area">
+
+                <!-- Desktop header -->
                 <header id="desktop-header" class="desktop-header">
+
                     <div class="header-left">
-                        <button type="button" class="icon-button desktop-sidebar-toggle"
-                                data-action="toggle-sidebar" aria-label="Toggle sidebar"
-                                aria-controls="owner-sidebar" aria-expanded="true">☰</button>
+                        <button
+                            type="button"
+                            class="icon-button desktop-sidebar-toggle"
+                            data-action="toggle-sidebar"
+                            aria-label="Toggle sidebar"
+                            aria-controls="sidebar"
+                            aria-expanded="true">☰</button>
 
                         <div class="breadcrumb-wrapper">
                             <span class="breadcrumb-muted">Studio</span>
                             <span class="breadcrumb-divider">/</span>
-                            <strong id="current-page-name">Dashboard</strong>
+                            <strong id="header-title">Dashboard</strong>
                         </div>
                     </div>
 
                     <div class="header-right">
-                        <div id="header-date" class="header-date">
+
+                        <div id="header-subtitle" class="header-date">
                             <span class="header-date-label">Today</span>
                             <strong>Loading date...</strong>
                         </div>
 
-                        <button type="button" class="icon-button" data-action="toggle-theme"
-                                aria-label="Toggle light and dark theme">◐</button>
+                        <button type="button" class="icon-button"
+                                data-action="toggle-theme"
+                                aria-label="Toggle theme">◐</button>
 
                         <button type="button" class="icon-button notification-button"
-                                data-action="toggle-notifications" aria-label="Open notifications">
+                                data-action="toggle-notifications"
+                                aria-label="Open notifications">
                             ♢
                             <span id="header-notification-count" class="notification-count" hidden>0</span>
                         </button>
 
                         <button type="button" class="header-profile-button"
-                                data-action="open-profile-menu" aria-label="Open profile menu"
+                                data-action="open-profile-menu"
+                                aria-label="Open profile menu"
                                 aria-expanded="false">
                             <span id="header-avatar" class="header-avatar">RS</span>
                             <span class="header-profile-copy">
-                                <strong id="header-owner-name">Studio Owner</strong>
-                                <small>Owner</small>
+                                <strong id="header-user-name">Studio Owner</strong>
+                                <small id="header-user-email">owner@example.com</small>
                             </span>
                             <span class="profile-chevron">▾</span>
                         </button>
@@ -207,10 +310,132 @@
                     </div>
                 </header>
 
+                <!-- =========================================
+                     PAGE CONTENT — all sections live here
+                ========================================== -->
                 <main id="main-content" class="page-content" tabindex="-1">
-                    <div id="page-container" class="page-container"></div>
+                    <div id="page-container" class="page-container">
+
+                        <!-- DASHBOARD -->
+                        <section
+                            id="page-dashboard"
+                            class="page page-dashboard is-active"
+                            data-page-view="dashboard"
+                            aria-label="Dashboard">
+                            <header class="page-header">
+                                <h1>Dashboard</h1>
+                                <p>Overview of your studio activity.</p>
+                            </header>
+                            <div id="dashboard-stats" class="dashboard-stats"></div>
+                            <div id="dashboard-recent" class="dashboard-recent"></div>
+                        </section>
+
+                        <!-- BOOKINGS -->
+                        <section
+                            id="page-bookings"
+                            class="page page-bookings"
+                            data-page-view="bookings"
+                            aria-label="Bookings"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Bookings</h1>
+                                <p>Manage client bookings and shoots.</p>
+                            </header>
+                            <div id="bookings-container" class="bookings-container"></div>
+                        </section>
+
+                        <!-- CALENDAR -->
+                        <section
+                            id="page-calendar"
+                            class="page page-calendar"
+                            data-page-view="calendar"
+                            aria-label="Calendar"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Calendar</h1>
+                                <p>Schedule at a glance.</p>
+                            </header>
+                            <div id="calendar-container" class="calendar-container"></div>
+                        </section>
+
+                        <!-- CONTRACTS -->
+                        <section
+                            id="page-contracts"
+                            class="page page-contracts"
+                            data-page-view="contracts"
+                            aria-label="Contracts"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Contracts</h1>
+                                <p>Client agreements and paperwork.</p>
+                            </header>
+                            <div id="contracts-container" class="contracts-container"></div>
+                        </section>
+
+                        <!-- GALLERY -->
+                        <section
+                            id="page-gallery"
+                            class="page page-gallery"
+                            data-page-view="gallery"
+                            aria-label="Gallery"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Gallery</h1>
+                                <p>Studio and client photo galleries.</p>
+                            </header>
+                            <div id="gallery-container" class="gallery-container"></div>
+                        </section>
+
+                        <!-- NOTIFICATIONS -->
+                        <section
+                            id="page-notifications"
+                            class="page page-notifications"
+                            data-page-view="notifications"
+                            aria-label="Notifications"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Notifications</h1>
+                                <p>Recent studio updates.</p>
+                            </header>
+                            <div id="notifications-container" class="notifications-container">
+                                <p class="empty-state">No notifications yet.</p>
+                            </div>
+                        </section>
+
+                        <!-- SETTINGS -->
+                        <section
+                            id="page-settings"
+                            class="page page-settings"
+                            data-page-view="settings"
+                            aria-label="Settings"
+                            hidden>
+                            <header class="page-header">
+                                <h1>Settings</h1>
+                                <p>Studio preferences and account.</p>
+                            </header>
+                            <form id="settings-form" class="settings-form">
+                                <div class="form-field">
+                                    <label for="settings-studio-name">Studio name</label>
+                                    <input id="settings-studio-name" name="studio_name" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <label for="settings-owner-name">Owner name</label>
+                                    <input id="settings-owner-name" name="owner_name" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <label for="settings-owner-email">Owner email</label>
+                                    <input id="settings-owner-email" name="owner_email" type="email">
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="btn-label">Save changes</span>
+                                </button>
+                            </form>
+                        </section>
+
+                    </div>
                 </main>
 
+                <!-- Footer -->
                 <footer class="app-footer">
                     <p>© <span id="footer-year">2026</span> RS Photography. All rights reserved.</p>
                     <p>Crafted for creative work.</p>
@@ -218,16 +443,23 @@
             </div>
         </section>
 
-        <div id="modal-root" class="modal-root" hidden aria-live="polite"></div>
-        <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+        <!-- =================================================
+             MODAL + TOAST ROOTS
+        ================================================== -->
+        <div id="modal-container" class="modal-root" hidden aria-live="polite"></div>
+        <div id="toast-container" class="toast-root" aria-live="polite" aria-atomic="true"></div>
 
+        <!-- =================================================
+             NOTIFICATION PANEL
+        ================================================== -->
         <aside id="notification-panel" class="notification-panel" hidden aria-label="Notifications">
             <div class="notification-panel-header">
                 <div>
                     <span class="eyebrow">Studio updates</span>
                     <h2>Notifications</h2>
                 </div>
-                <button type="button" class="icon-button" data-action="close-notifications"
+                <button type="button" class="icon-button"
+                        data-action="close-notifications"
                         aria-label="Close notifications">×</button>
             </div>
 
@@ -236,27 +468,27 @@
             </div>
 
             <div class="notification-panel-footer">
-                <button type="button" class="text-button" data-action="mark-all-notifications-read">
-                    Mark all as read
-                </button>
-                <button type="button" class="text-button" data-action="open-notifications-page">
-                    View all
-                </button>
+                <button type="button" class="text-button"
+                        data-action="mark-all-notifications-read">Mark all as read</button>
+                <button type="button" class="text-button"
+                        data-action="open-notifications-page">View all</button>
             </div>
         </aside>
     </div>
 
+    <!-- No-JS fallback -->
     <noscript>
         <div class="noscript-message">
             JavaScript is required to use the RS Photography Owner Dashboard.
-            Enable JavaScript in your browser and reload this page.
+            Enable JavaScript and reload this page.
         </div>
     </noscript>
 
-    <!-- ================= SUPABASE CLIENT ================= -->
+    <!-- =====================================================
+         SCRIPTS (order preserved, ./ prefix added)
+    ====================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
-    <!-- ================= CORE ================= -->
     <script src="./js/01-config.js" defer></script>
     <script src="./js/02-state.js" defer></script>
     <script src="./js/03-dom.js" defer></script>
@@ -264,14 +496,11 @@
 
     <script src="./core/connections.js" defer></script>
 
-    <!-- ================= AUTH ================= -->
     <script src="./js/05-auth.js" defer></script>
 
-    <!-- ================= NAVIGATION ================= -->
     <script src="./js/06-navigation.js" defer></script>
     <script src="./js/07-sidebar.js" defer></script>
 
-    <!-- ================= MODULES ================= -->
     <script src="./js/08-dashboard.js" defer></script>
     <script src="./js/09-bookings.js" defer></script>
     <script src="./js/10-calendar.js" defer></script>
@@ -280,25 +509,21 @@
     <script src="./js/13-notifications.js" defer></script>
     <script src="./js/14-settings.js" defer></script>
 
-    <!-- ================= ENTRY POINT ================= -->
     <script src="./js/15-app.js" defer></script>
 
-    <!-- ================= SAFETY NET ================= -->
+    <!-- Safety net: reveal error if app never boots -->
     <script>
-        // If for any reason the app never boots in 8 seconds,
-        // show the real reason instead of an infinite spinner.
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                var loader = document.getElementById('global-loader');
-                var errEl  = document.getElementById('loader-error');
-                if (!loader || loader.hidden || !errEl) return;
-                if (typeof window.RS_APP_READY !== 'undefined') return;
-
-                errEl.hidden = false;
-                errEl.textContent =
-                    'App failed to start. Open DevTools (F12) → Console to see which file returned 404.';
-            }, 8000);
-        });
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var loader = document.getElementById('global-loader');
+            var errEl  = document.getElementById('global-loader-error');
+            if (!loader || loader.hidden || !errEl) return;
+            if (window.RS_APP_READY) return;
+            errEl.hidden = false;
+            errEl.textContent =
+                'App failed to start. Open DevTools (F12) → Console for details.';
+        }, 8000);
+    });
     </script>
 </body>
 </html>
