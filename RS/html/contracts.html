@@ -1,0 +1,1043 @@
+```html id="7xq2nm"
+<section
+    id="contracts-page"
+    class="page-section contracts-page"
+    data-page-content="contracts"
+>
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+    <div class="page-heading">
+        <div class="page-heading-copy">
+            <span class="eyebrow">
+                Client documents
+            </span>
+
+            <h1>
+                Contracts
+            </h1>
+
+            <p>
+                Create, organize, and track contracts for photography projects.
+            </p>
+        </div>
+
+        <div class="page-heading-actions">
+            <button
+                type="button"
+                class="button button-secondary"
+                data-action="refresh-contracts"
+            >
+                <span aria-hidden="true">
+                    ↻
+                </span>
+
+                Refresh
+            </button>
+
+            <button
+                type="button"
+                class="button button-primary"
+                data-action="open-new-contract"
+            >
+                <span aria-hidden="true">
+                    +
+                </span>
+
+                New contract
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         CONTRACT STATISTICS
+    ====================================================== -->
+    <section
+        class="stats-grid contracts-stats"
+        aria-label="Contract statistics"
+    >
+
+        <article class="stat-card">
+            <div class="stat-card-top">
+                <span class="stat-card-label">
+                    Total contracts
+                </span>
+
+                <span class="stat-card-icon">
+                    ▤
+                </span>
+            </div>
+
+            <strong
+                id="contracts-total-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                All contract records
+            </p>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-card-top">
+                <span class="stat-card-label">
+                    Drafts
+                </span>
+
+                <span class="stat-card-icon">
+                    ◷
+                </span>
+            </div>
+
+            <strong
+                id="contracts-draft-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Not sent to clients
+            </p>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-card-top">
+                <span class="stat-card-label">
+                    Sent
+                </span>
+
+                <span class="stat-card-icon">
+                    →
+                </span>
+            </div>
+
+            <strong
+                id="contracts-sent-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Awaiting client action
+            </p>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-card-top">
+                <span class="stat-card-label">
+                    Signed
+                </span>
+
+                <span class="stat-card-icon">
+                    ✓
+                </span>
+            </div>
+
+            <strong
+                id="contracts-signed-count"
+                class="stat-card-value"
+            >
+                0
+            </strong>
+
+            <p class="stat-card-footer">
+                Completed agreements
+            </p>
+        </article>
+    </section>
+
+    <!-- =====================================================
+         CONTRACT LIST
+    ====================================================== -->
+    <section
+        class="dashboard-card contracts-list-card"
+        aria-labelledby="contracts-list-title"
+    >
+
+        <div class="dashboard-card-header">
+
+            <div>
+                <span class="eyebrow">
+                    Agreement records
+                </span>
+
+                <h2 id="contracts-list-title">
+                    All contracts
+                </h2>
+            </div>
+
+            <div class="table-header-actions">
+                <button
+                    type="button"
+                    class="button button-ghost"
+                    data-action="export-contracts"
+                >
+                    <span aria-hidden="true">
+                        ↓
+                    </span>
+
+                    Export
+                </button>
+
+                <button
+                    type="button"
+                    class="button button-ghost"
+                    data-action="clear-contract-filters"
+                >
+                    Clear filters
+                </button>
+            </div>
+        </div>
+
+        <!-- =================================================
+             FILTER TOOLBAR
+        ================================================== -->
+        <div
+            class="booking-filter-toolbar contracts-filter-toolbar"
+            role="search"
+            aria-label="Filter contracts"
+        >
+
+            <div class="booking-search">
+                <label
+                    class="sr-only"
+                    for="contract-search-input"
+                >
+                    Search contracts
+                </label>
+
+                <div class="input-wrapper">
+                    <span
+                        class="input-icon"
+                        aria-hidden="true"
+                    >
+                        ⌕
+                    </span>
+
+                    <input
+                        id="contract-search-input"
+                        class="form-input has-leading-icon"
+                        type="search"
+                        placeholder="Search client or contract..."
+                        autocomplete="off"
+                        data-contract-filter="search"
+                    >
+                </div>
+            </div>
+
+            <div class="booking-filter">
+                <label
+                    class="sr-only"
+                    for="contract-status-filter"
+                >
+                    Contract status
+                </label>
+
+                <select
+                    id="contract-status-filter"
+                    class="form-select"
+                    data-contract-filter="status"
+                >
+                    <option value="all">
+                        All statuses
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                    <option value="sent">
+                        Sent
+                    </option>
+
+                    <option value="viewed">
+                        Viewed
+                    </option>
+
+                    <option value="signed">
+                        Signed
+                    </option>
+
+                    <option value="expired">
+                        Expired
+                    </option>
+
+                    <option value="cancelled">
+                        Cancelled
+                    </option>
+                </select>
+            </div>
+
+            <div class="booking-filter">
+                <label
+                    class="sr-only"
+                    for="contract-sort-filter"
+                >
+                    Sort contracts
+                </label>
+
+                <select
+                    id="contract-sort-filter"
+                    class="form-select"
+                    data-contract-filter="sort"
+                >
+                    <option value="newest">
+                        Newest first
+                    </option>
+
+                    <option value="oldest">
+                        Oldest first
+                    </option>
+
+                    <option value="client">
+                        Client name
+                    </option>
+
+                    <option value="status">
+                        Status
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- =================================================
+             CONTRACT TABLE
+        ================================================== -->
+        <div class="table-scroll-wrapper">
+
+            <table
+                id="contracts-table"
+                class="data-table contracts-table"
+            >
+                <thead>
+                    <tr>
+
+                        <th scope="col">
+                            Client
+                        </th>
+
+                        <th scope="col">
+                            Contract
+                        </th>
+
+                        <th scope="col">
+                            Created
+                        </th>
+
+                        <th scope="col">
+                            Event date
+                        </th>
+
+                        <th scope="col">
+                            Amount
+                        </th>
+
+                        <th scope="col">
+                            Status
+                        </th>
+
+                        <th
+                            scope="col"
+                            class="table-actions-column"
+                        >
+                            Actions
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody id="contracts-table-body">
+                    <!-- Contract rows inserted by contracts.js -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- =================================================
+             LOADING STATE
+        ================================================== -->
+        <div
+            id="contracts-loading"
+            class="table-state"
+            hidden
+        >
+            <div class="loader-circle"></div>
+
+            <p>
+                Loading contracts...
+            </p>
+        </div>
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+        <div
+            id="contracts-empty"
+            class="empty-state table-empty-state"
+            hidden
+        >
+            <span class="empty-state-icon">
+                ▤
+            </span>
+
+            <h3>
+                No contracts found
+            </h3>
+
+            <p>
+                Create your first contract or change the current filters.
+            </p>
+
+            <button
+                type="button"
+                class="button button-secondary"
+                data-action="open-new-contract"
+            >
+                Create contract
+            </button>
+        </div>
+
+        <!-- =================================================
+             PAGINATION
+        ================================================== -->
+        <div
+            id="contracts-pagination"
+            class="pagination"
+            hidden
+        >
+            <div class="pagination-summary">
+                Showing
+                <strong id="contracts-pagination-start">
+                    0
+                </strong>
+                to
+                <strong id="contracts-pagination-end">
+                    0
+                </strong>
+                of
+                <strong id="contracts-pagination-total">
+                    0
+                </strong>
+            </div>
+
+            <div class="pagination-controls">
+
+                <button
+                    type="button"
+                    class="pagination-button"
+                    data-action="contracts-first-page"
+                    aria-label="First page"
+                >
+                    «
+                </button>
+
+                <button
+                    type="button"
+                    class="pagination-button"
+                    data-action="contracts-previous-page"
+                    aria-label="Previous page"
+                >
+                    ‹
+                </button>
+
+                <div
+                    id="contracts-page-numbers"
+                    class="pagination-numbers"
+                ></div>
+
+                <button
+                    type="button"
+                    class="pagination-button"
+                    data-action="contracts-next-page"
+                    aria-label="Next page"
+                >
+                    ›
+                </button>
+
+                <button
+                    type="button"
+                    class="pagination-button"
+                    data-action="contracts-last-page"
+                    aria-label="Last page"
+                >
+                    »
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         CONTRACT DETAIL PANEL
+    ====================================================== -->
+    <aside
+        id="contract-detail-panel"
+        class="detail-panel"
+        hidden
+        aria-label="Contract details"
+    >
+
+        <div class="detail-panel-header">
+
+            <div>
+                <span class="eyebrow">
+                    Agreement
+                </span>
+
+                <h2 id="contract-detail-title">
+                    Contract details
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="icon-button"
+                data-action="close-contract-detail"
+                aria-label="Close contract details"
+            >
+                ×
+            </button>
+        </div>
+
+        <div
+            id="contract-detail-content"
+            class="detail-panel-content"
+        >
+            <!-- Selected contract details -->
+        </div>
+
+        <div class="detail-panel-footer">
+
+            <button
+                type="button"
+                class="button button-secondary"
+                data-action="edit-selected-contract"
+            >
+                Edit
+            </button>
+
+            <button
+                type="button"
+                class="button button-primary"
+                data-action="send-selected-contract"
+            >
+                Send contract
+            </button>
+
+        </div>
+    </aside>
+
+    <!-- =====================================================
+         NEW CONTRACT MODAL
+    ====================================================== -->
+    <div
+        id="new-contract-modal"
+        class="modal-root"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-backdrop"
+            data-action="close-new-contract"
+        ></div>
+
+        <section
+            class="modal-card modal-card-large"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="new-contract-title"
+        >
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        Agreement
+                    </span>
+
+                    <h2 id="new-contract-title">
+                        New contract
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-action="close-new-contract"
+                    aria-label="Close contract dialog"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <p class="modal-description">
+                Create a contract record for a photography client.
+            </p>
+
+            <form
+                id="new-contract-form"
+                class="modal-form"
+                novalidate
+            >
+
+                <!-- =========================================
+                     CLIENT
+                ========================================== -->
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+                        <h3>
+                            Client information
+                        </h3>
+
+                        <p>
+                            Connect the agreement with the correct client.
+                        </p>
+                    </div>
+
+                    <div class="form-grid form-grid-two">
+
+                        <div class="form-group">
+                            <label
+                                for="contract-client-name"
+                                class="form-label"
+                            >
+                                Client name
+                            </label>
+
+                            <input
+                                id="contract-client-name"
+                                name="client_name"
+                                class="form-input"
+                                type="text"
+                                placeholder="Full name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                for="contract-client-phone"
+                                class="form-label"
+                            >
+                                Phone number
+                            </label>
+
+                            <input
+                                id="contract-client-phone"
+                                name="client_phone"
+                                class="form-input"
+                                type="tel"
+                                placeholder="+91"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            for="contract-client-email"
+                            class="form-label"
+                        >
+                            Email address
+                        </label>
+
+                        <input
+                            id="contract-client-email"
+                            name="client_email"
+                            class="form-input"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="client@example.com"
+                        >
+                    </div>
+                </div>
+
+                <!-- =========================================
+                     EVENT
+                ========================================== -->
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+                        <h3>
+                            Event information
+                        </h3>
+
+                        <p>
+                            Details covered by the agreement.
+                        </p>
+                    </div>
+
+                    <div class="form-grid form-grid-two">
+
+                        <div class="form-group">
+                            <label
+                                for="contract-event-name"
+                                class="form-label"
+                            >
+                                Event / project
+                            </label>
+
+                            <input
+                                id="contract-event-name"
+                                name="event_name"
+                                class="form-input"
+                                type="text"
+                                placeholder="Wedding photography"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                for="contract-event-type"
+                                class="form-label"
+                            >
+                                Service type
+                            </label>
+
+                            <select
+                                id="contract-event-type"
+                                name="event_type"
+                                class="form-select"
+                            >
+                                <option value="">
+                                    Select service
+                                </option>
+
+                                <option value="wedding">
+                                    Wedding
+                                </option>
+
+                                <option value="pre-wedding">
+                                    Pre-Wedding
+                                </option>
+
+                                <option value="portrait">
+                                    Portrait
+                                </option>
+
+                                <option value="engagement">
+                                    Engagement
+                                </option>
+
+                                <option value="birthday">
+                                    Birthday
+                                </option>
+
+                                <option value="corporate">
+                                    Corporate
+                                </option>
+
+                                <option value="event">
+                                    Event
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                for="contract-event-date"
+                                class="form-label"
+                            >
+                                Event date
+                            </label>
+
+                            <input
+                                id="contract-event-date"
+                                name="event_date"
+                                class="form-input"
+                                type="date"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                for="contract-event-location"
+                                class="form-label"
+                            >
+                                Location
+                            </label>
+
+                            <input
+                                id="contract-event-location"
+                                name="event_location"
+                                class="form-input"
+                                type="text"
+                                placeholder="Event location"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================
+                     PAYMENT
+                ========================================== -->
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+                        <h3>
+                            Payment
+                        </h3>
+
+                        <p>
+                            Record the agreed project amount.
+                        </p>
+                    </div>
+
+                    <div class="form-grid form-grid-two">
+
+                        <div class="form-group">
+                            <label
+                                for="contract-total-amount"
+                                class="form-label"
+                            >
+                                Total amount
+                            </label>
+
+                            <div class="input-wrapper">
+                                <span
+                                    class="input-prefix"
+                                    aria-hidden="true"
+                                >
+                                    ₹
+                                </span>
+
+                                <input
+                                    id="contract-total-amount"
+                                    name="total_amount"
+                                    class="form-input has-prefix"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    placeholder="0"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label
+                                for="contract-advance"
+                                class="form-label"
+                            >
+                                Advance amount
+                            </label>
+
+                            <div class="input-wrapper">
+                                <span
+                                    class="input-prefix"
+                                    aria-hidden="true"
+                                >
+                                    ₹
+                                </span>
+
+                                <input
+                                    id="contract-advance"
+                                    name="advance_amount"
+                                    class="form-input has-prefix"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    placeholder="0"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================
+                     CONTRACT CONTENT
+                ========================================== -->
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+                        <h3>
+                            Agreement notes
+                        </h3>
+
+                        <p>
+                            Add important project terms or internal notes.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label
+                            for="contract-notes"
+                            class="form-label"
+                        >
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="contract-notes"
+                            name="notes"
+                            class="form-textarea"
+                            rows="6"
+                            placeholder="Add contract terms, deliverables, payment notes, or other details..."
+                        ></textarea>
+
+                    </div>
+                </div>
+
+                <!-- =========================================
+                     STATUS
+                ========================================== -->
+                <div class="form-section">
+
+                    <div class="form-group">
+
+                        <label
+                            for="contract-initial-status"
+                            class="form-label"
+                        >
+                            Initial status
+                        </label>
+
+                        <select
+                            id="contract-initial-status"
+                            name="status"
+                            class="form-select"
+                        >
+                            <option value="draft">
+                                Draft
+                            </option>
+
+                            <option value="sent">
+                                Sent
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- =========================================
+                     ACTIONS
+                ========================================== -->
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        data-action="close-new-contract"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                        id="save-contract-button"
+                    >
+                        <span id="save-contract-text">
+                            Save contract
+                        </span>
+
+                        <span
+                            id="save-contract-loader"
+                            class="button-loader"
+                            hidden
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- =====================================================
+         DELETE CONTRACT MODAL
+    ====================================================== -->
+    <div
+        id="delete-contract-modal"
+        class="modal-root"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal-backdrop"
+            data-action="close-delete-contract"
+        ></div>
+
+        <section
+            class="modal-card modal-card-small"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-contract-title"
+        >
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">
+                        Permanent action
+                    </span>
+
+                    <h2 id="delete-contract-title">
+                        Delete contract?
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    data-action="close-delete-contract"
+                    aria-label="Close delete contract dialog"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <p class="modal-description">
+                This will permanently remove the selected contract record.
+                Any external document should be handled separately.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    data-action="close-delete-contract"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="button button-danger"
+                    data-action="confirm-delete-contract"
+                >
+                    Delete contract
+                </button>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- =====================================================
+         PAGE STATUS
+    ====================================================== -->
+    <div
+        id="contracts-status"
+        class="page-status"
+        role="status"
+        aria-live="polite"
+        hidden
+    ></div>
+
+</section>
+```
